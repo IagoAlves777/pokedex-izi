@@ -20,10 +20,6 @@ export const SearchPokemon = () => {
       return;
     }
     setPokemonInfo(response);
-    console.log(
-      "🚀 ~ file: index.tsx ~ line 23 ~ showInfoPokemon ~ response",
-      response
-    );
     setShow(true);
     setError(false);
   };
