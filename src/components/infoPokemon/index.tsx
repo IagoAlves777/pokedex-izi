@@ -5,18 +5,29 @@ import * as C from "./styles";
 type Props = {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
   // @ts-expect-error
   pokemonInfo: Pokemon;
 };
 
-export const InfoPokemon = ({ show, setShow, pokemonInfo }: Props) => {
+export const InfoPokemon = ({
+  show,
+  setShow,
+  pokemonInfo,
+  setLoading,
+}: Props) => {
+  const closeModal = () => {
+    setLoading(false);
+    setShow(false);
+  };
+
   return (
     <>
       {pokemonInfo === undefined ? (
         <></>
       ) : (
         <C.Container>
-          <Modal show={show} onHide={() => setShow(false)}>
+          <Modal show={show} onHide={() => closeModal()}>
             <Modal.Header closeButton>
               <Modal.Title>
                 {pokemonInfo.data.name.toUpperCase()} #{pokemonInfo.data.id}

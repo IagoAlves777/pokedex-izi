@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import ServiceAPI from "../../services/serviceAPI";
 import { InfoPokemon } from "../infoPokemon";
 import * as C from "./styles";
@@ -11,11 +11,14 @@ export const SearchPokemon = () => {
     boolean | AxiosResponse<any, any>
   >();
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [show, setShow] = useState(false);
   const showInfoPokemon = async () => {
+    setLoading(true);
     const response = await ServiceAPI.getPokemonByName(pokemonName);
     if (response === true) {
+      setLoading(false);
       setError(true);
       return;
     }
@@ -37,9 +40,15 @@ export const SearchPokemon = () => {
         <Button variant="light" onClick={() => showInfoPokemon()}>
           Buscar
         </Button>
-        <InfoPokemon show={show} setShow={setShow} pokemonInfo={pokemonInfo} />
+        <InfoPokemon
+          show={show}
+          setShow={setShow}
+          pokemonInfo={pokemonInfo}
+          setLoading={setLoading}
+        />
       </div>
-      {error && <h4>Erro ao buscar pokémon</h4>}
+      {loading && !error && <Spinner animation="border" variant="light" />}
+      {error && !loading && <h4>Erro ao buscar pokémon</h4>}
     </C.Container>
   );
 };
