@@ -8,7 +8,7 @@ import * as C from "./styles";
 export const PokemonTable = () => {
   const count = 113;
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const limit = 10;
 
   useEffect(() => {
@@ -23,11 +23,8 @@ export const PokemonTable = () => {
       });
       setPokemons(auxPokemons);
     };
-    if (page > 1) {
-      getPokemons((page - 1) * 10, limit);
-    } else {
-      getPokemons(0, limit);
-    }
+
+    getPokemons((page - 1) * 10, limit);
   }, [page]);
   return (
     <C.Container>
