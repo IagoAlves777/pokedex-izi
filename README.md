@@ -5,7 +5,8 @@ Uma lista dos pokémons consumindo a api pokeapi, utilizando Typescript e Styled
 - [X] Consumir a API e listar os pokémons
 - [X] Exibir os pokémons em uma tabela
 - [X] Páginar a tabela que lista os pokémons
-Adcional:
+
+Adicional: 
 - [X] É possível buscar por um pokémon e ver algumas informações sobre o mesmo
 
 ### Tecnologias utilizadas
