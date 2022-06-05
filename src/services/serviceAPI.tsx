@@ -11,10 +11,7 @@ class ServiceAPI {
 
   static getPokemonByName(pokemonName: string) {
     const apiCallString = `${apiBase}/${pokemonName}`;
-    const pokemon = axios.get(apiCallString).catch(function (error) {
-      console.log(error);
-      return true;
-    });
+    const pokemon = axios.get(apiCallString);
 
     return pokemon;
   }

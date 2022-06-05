@@ -33,4 +33,8 @@ export const Content = styled.div`
   .type {
     margin-right: 20px;
   }
+
+  .modal-title {
+    font-weight: 900;
+  }
 `;

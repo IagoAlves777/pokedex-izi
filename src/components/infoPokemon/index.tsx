@@ -6,8 +6,7 @@ type Props = {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
-  // @ts-expect-error
-  pokemonInfo: Pokemon;
+  pokemonInfo: any;
 };
 
 export const InfoPokemon = ({

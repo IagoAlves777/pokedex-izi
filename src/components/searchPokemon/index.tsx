@@ -15,16 +15,22 @@ export const SearchPokemon = () => {
 
   const [show, setShow] = useState(false);
   const showInfoPokemon = async () => {
-    setLoading(true);
-    const response = await ServiceAPI.getPokemonByName(pokemonName);
-    if (response === true) {
-      setLoading(false);
+    if (pokemonName === "") {
       setError(true);
       return;
     }
-    setPokemonInfo(response);
-    setShow(true);
-    setError(false);
+    setLoading(true);
+    try {
+      const response = await ServiceAPI.getPokemonByName(pokemonName);
+      setPokemonInfo(response);
+      setShow(true);
+      setError(false);
+    } catch (error) {
+      setError(true);
+      return;
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <C.Container>
